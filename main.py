@@ -6,7 +6,11 @@ rand = random.randint(0, len(word_list)-1)
 chosen_word = word_list[rand]
 
 print(chosen_word)
-# TODO: Ask the user to guess a letter and assign their answer to a variable. Make it lower case
+# TODO: Create a placeholder for the chosen_word
+for i in range(len(chosen_word)):
+    print(end='_')
+print()
+
 guess = input("Guess a letter: ")
 guess = guess.lower()
 # TODO: Check if the letter user guessed is actually one of the right letters in chosen_word
