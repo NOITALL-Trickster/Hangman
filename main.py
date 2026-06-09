@@ -61,22 +61,35 @@ print(chosen_word)
 for i in range(len(chosen_word)):
     print(end='_')
 print()
-# TODO: Create a while loop for the user to guess again
+# TODO: Keep track of player lives using hangman symbols
 correct_letters = []
 user_won = False
+lives = len(HANGMANPICS)
 while not user_won:
-    guess = input("Guess a letter: ")
-    guess = guess.lower()
-# TODO: Replace the guess letter with right places in placeholder
-    display = ""
-    for letter in chosen_word:
-        if guess == letter:
-            display += letter
-            correct_letters.append(letter)
-        elif letter in correct_letters:
-            display += letter
-        else:
-            display += '_'
-    if '_' not in display:
+
+    if lives <= 1:
         user_won = True
-    print(display)
+    else:
+
+        guess = input("Guess a letter: ")
+        guess = guess.lower()
+
+        display = ""
+        for letter in chosen_word:
+            if guess == letter:
+                display += letter
+                correct_letters.append(letter)
+            elif letter in correct_letters:
+                display += letter
+            else:
+                display += '_'
+        if '_' not in display:
+            user_won = True
+
+        if guess not in chosen_word:
+            lives -= 1
+        print(display)
+        print(HANGMANPICS[(lives * -1)])
+
+if user_won and lives <= 1:
+    print("You Lose!")
